@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./src/vue.js"></script>
+    <style>
+      a{
+        display: inline-block;
+        color:blue;
+        margin: 10px;
+      }
+      .active{
+        color: #f00;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <section id="section">
+          <nav id="choose">
+            你的选择是：
+            <mark v-for="item,key in choose">
+              {{item}}
+              <a href="javascript:;"
+              @click="dataRemove(key)"
+              >×</a>
+            </mark>
+          </nav>
+          <ul >
+            <li v-for="(item, index) in dataList" :key="index">
+             {{item.title}}
+              <a href="####" v-for="opt,i in item.list"
+              :class="{active : item.index === i}"
+              @click = addChooseHandle(opt,index,i)
+              >{{opt}}</a>             
+            </li>
+           
+          </ul>
+      </section>
+    </div>
+
+
+    <script>
+        let data = [
+        {
+          title:"品牌",
+          list:['小米',"锤子","华为","vivo","魅族","苹果"]
+        },
+        {
+          title:"尺寸",
+          list:['3.0英寸以下',"4.0-4.5英寸","5.0-5.5英寸","6.0英寸以上","6.2","5.5"]
+        }
+      ];
+      /* 
+        对象 key值不重复
+        思路：用对象来保存每一行选中的表情，把每一行下标作为Key值
+        需要给数据的每一行添加一个属性，属性用来记录选中的标签
+       */
+
+       //需要处理data
+       data.forEach(item => item.index = -1 );
+    
+
+      let vm = new Vue({
+          el:"#wrap",
+          data:{
+            dataList:data,
+            choose: {}
+          },
+          methods: {
+            addChooseHandle(opt,index,i){
+              console.log(opt);
+              // 这样给对象添加属性并不会响应
+              //this.choose[index] = option;
+              this.$set(this.choose,index,opt);
+              //找到操作的一行，把这一行操作的index,设置为点击的标签的下标
+              this.dataList[index].index = i;
+            },
+            dataRemove(key){
+              console.log(this.choose);
+              console.log(key);
+              this.$delete(this.choose,key);
+              this.dataList[key].index = -1;
+            }
+          },
+      })
+    </script>
+  </body>
+</html>

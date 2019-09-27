@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>数据控制的选项卡</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="./src/vue.js"></script>
+    <style>
+    .visible{
+      display:block;
+    }
+    .active{
+      background-color: #f60;
+      color: #fff;
+    }
+    #app div{
+      display: none;
+    }
+    </style>
+  </head>
+  <body>
+      <div id="app">
+       <input
+       v-for="(item, i) in tabData" :key="i"
+       type="button" :value="item.title" 
+       :class="{ active:i === index }"
+       @click="tabHandle(i)">
+
+       <div v-for="(item , j) in tabData" 
+       :style="{display:j === index ? 'block' :'none' }">
+         <p v-for="opt in item.list">
+           {{opt.subTitle}}
+         </p>
+       </div>
+
+      </div>
+  
+  <script>
+   
+    let tabData = [
+      {
+        title:"今天",
+       list:[
+         {
+           subTitle:"今天还可以"
+         },
+         {
+           subTitle:"今天还可以"
+         },
+         {
+           subTitle:"今天还可以"
+         }
+       ]
+      },
+      {
+        title:"昨天",
+        list:[
+         {
+           subTitle:"昨天还可以"
+         },
+         {
+           subTitle:"昨天还可以"
+         },
+         {
+           subTitle:"昨天还可以"
+         }
+       ]
+      },
+      {
+        title:"后天",
+        list:[
+         {
+           subTitle:"后天还可以"
+         },
+         {
+           subTitle:"后天还可以"
+         },
+         {
+           subTitle:"后天还可以"
+         }
+       ]
+      }
+    ]
+    
+    /* 
+      可控制class
+      v-bind:class="{class名字：表达式}"
+      表达式为true就添加class ,为false就忽略
+      控制style
+      v-bind:style="{样式名：样式值}"
+     */
+    let vm = new Vue({
+      el:"#app",
+      data:{
+        tabData,
+        index:0
+      },
+      methods: {
+        tabHandle(index){
+          this.index = index;         
+        }
+      },
+    })
+  </script>
+  </body>
+</html>
