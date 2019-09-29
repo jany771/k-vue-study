@@ -4,19 +4,23 @@
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     <hello message="hello jany" foo="kkkk" ref='hi'></hello>
     <slots></slots>
+    <!-- 通信 -->
+    <communicate></communicate>
   </div>
 </template>
 
 <script>
 
 import Hello from './components/Hello.vue'
-import slots from './components/slots'
+import Slots from './components/slots'
+import Communicate from './components/communicate'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    slots
+    Slots,
+    Communicate
 
   },
   data () {
