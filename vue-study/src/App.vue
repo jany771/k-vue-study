@@ -2,24 +2,25 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <!-- <hello message="hello jany" foo="kkkk" ref='hi'></hello>
-    <slots></slots> -->
-    <k-form></k-form>
+    <hello message="hello jany" foo="kkkk" ref='hi'></hello>
+    <slots></slots>
+    <!-- 通信 -->
+    <communicate></communicate>
   </div>
 </template>
 
 <script>
 
 import Hello from './components/Hello.vue'
-import slots from './components/slots'
-import kForm from './components/kForm'
+import Slots from './components/slots'
+import Communicate from './components/communicate'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    slots,
-    kForm
+    Slots,
+    Communicate
 
   },
   data () {
