@@ -44,3 +44,37 @@ vue init [webpack] 项目名
     // parent 
     this.$children[0].xx = 'xxx'
   ```
+-----
+
+  ### 作业
+**1. 能手写Form、FormItem、Input实现**
+**2. 尝试解决Input里面$parent派发事件不够健壮的问题**
+
+
+**3. 说出.sync和v-model的异同**
+*数据双向绑定*
+##### v-model
+```js
+//parent index.vue
+<FormInput  v-model="model.username" placeholder="请输入用户名"></FormInput>
+ <FormInput  :value.sync="model.username"></FormInput>
+```
+
+```js 
+//children FormInput.vue
+<input :type="type" :value="value"  @input="onInput"
+         v-bind="$attrs"/>
+```
+
+```js        
+  methods: {
+    onInput(e){
+        //仅派发事件 把值传给老爹
+        //v-model
+        this.$emit('input',e.target.value);
+        //.sync
+        this.$emit('update:value',e.target.value)
+    }
+  }
+
+```

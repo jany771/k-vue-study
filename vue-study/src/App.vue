@@ -2,8 +2,9 @@
   <div id="app">
     <!-- <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/> -->
-    <hello message="hello jany" foo="kkkk" ref='hi'></hello>
-    <slots></slots>
+    <!-- <hello message="hello jany" foo="kkkk" ref='hi'></hello>
+    <slots></slots> -->
+    <k-form></k-form>
   </div>
 </template>
 
@@ -11,12 +12,14 @@
 
 import Hello from './components/Hello.vue'
 import slots from './components/slots'
+import kForm from './components/kForm'
 
 export default {
   name: 'app',
   components: {
     Hello,
-    slots
+    slots,
+    kForm
 
   },
   data () {
