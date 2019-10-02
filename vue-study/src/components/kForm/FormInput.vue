@@ -8,6 +8,7 @@
 
 <script>
     export default {
+        inheritAttrs:false,
         props: {
             type:{
                 type: String,
@@ -19,7 +20,7 @@
             }
         },
         mounted(){
-            console.log(this.$attrs);
+          //console.log(this.$attrs);
         },
         methods: {
             onInput(e){
@@ -27,7 +28,9 @@
                 //v-model
                 this.$emit('input',e.target.value);
                 //.sync
-                 this.$emit('update:value',e.target.value)
+                 this.$emit('update:value',e.target.value);
+                //通知校验
+                 this.$parent.$emit('validate')
             }
         }
         
